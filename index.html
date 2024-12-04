@@ -9,26 +9,30 @@
       font-family: Arial, sans-serif;
       margin: 20px;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
+    
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
     }
-    table, th, td {
-      border: 1px solid #ddd;
+    
+    .form-row .form-group {
+      flex: 1;
+      min-width: 200px;
     }
-    th, td {
-      padding: 8px;
-      text-align: left;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
     }
-    th {
-      background-color: #f4f4f4;
-    }
+
     .form-control {
       width: 100%;
       padding: 5px;
       margin-bottom: 10px;
     }
+
     .btn {
       padding: 10px 20px;
       background-color: #007BFF;
@@ -36,58 +40,97 @@
       border: none;
       cursor: pointer;
     }
+
     .btn:hover {
       background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f4f4f4;
     }
   </style>
 </head>
 <body>
 
 <form id="dataForm">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="officeId">اسم الدائرة/التشكيل:</label>
+      <select id="officeId" name="Officeid" class="form-control" required></select>
+    </div>
+    <div class="form-group">
+      <label for="officeType">مكتب محافظة?:</label>
+      <input type="number" id="officeType" name="OfficeType" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="jobDeg">الدرجة الوظيفية:</label>
+      <input type="number" id="jobDeg" name="JobDeg" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="classId">الفئة/مكان طبيعة العمل:</label>
+        <select id="classId" name="ClassId" class="form-control" required></select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="eduId">التحصيل العلمي:</label>
+      <select id="eduId" name="EduId" class="form-control" required></select>
+    </div>
+    <div class="form-group">
+      <label for="serviceId">سنوات الخدمة الفعلية:</label>
+      <select id="serviceId" name="ServiceId" class="form-control" required></select>
+    </div>
+    <div class="form-group">
+      <label for="envId">بيئة العمل:</label>
+      <select id="envId" name="EnvId" class="form-control" required></select>
+    </div>
+    <div class="form-group">
+        <label for="gender">الجنس:</label>
+        <select id="gender" name="Gender" class="form-control" required>
+          <option>ذكر</option>
+          <option>انثى</option>
+        </select>
+      </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+        <label for="notes">المقترحات والافكار:</label>
+        <input type="text" id="notes" name="Notes" class="form-control">
+    </div>
+  </div>
 
-  <label for="officeId">اسم الدائرة/التشكيل:</label>
-  <select id="officeId" name="Officeid" class="form-control" required></select>
-    
-  <label for="officeType">Office Type:</label>
-  <input type="number" id="officeType" name="OfficeType" class="form-control" required>
-    
-  <label for="jobDeg">Job Degree:</label>
-  <input type="number" id="jobDeg" name="JobDeg" class="form-control" required>
-    
-  <label for="notes">Notes:</label>
-  <input type="text" id="notes" name="Notes" class="form-control">
-    
-<label for="classId">Class ID:</label>
-<select id="classId" name="ClassId" class="form-control" required></select>
-
-<label for="eduId">Education ID:</label>
-<select id="eduId" name="EduId" class="form-control" required></select>
-
-<label for="serviceId">Service ID:</label>
-<select id="serviceId" name="ServiceId" class="form-control" required></select>
-
-<label for="envId">Environment ID:</label>
-<select id="envId" name="EnvId" class="form-control" required></select>
-
-
-<label for="gender">Gender:</label>
-<input type="text" id="gender" name="Gender" class="form-control">
-      
-  <h2>Results</h2>
+  <h4>ادناه محاور استبانة قياس الرضا الوظيفي</h4>
   <table id="resultsTable">
     <thead>
       <tr>
-        <th>Static Text</th>
-        <th>Form2 ID</th>
-        <th>Option Result</th>
-        <th>Features</th>
+        <th>المحور</th>
+        <th>رقم الاستمارة التفصيلية</th>
+        <th>اوزان الاحتساب</th>
+        <th>اوزان الاحتساب- اختيارات</th>
       </tr>
     </thead>
     <tbody>
     </tbody>
   </table>
+  
   <button type="submit" class="btn">Submit</button>
 </form>
+
 <script src="./app.js"></script>
 </body>
 </html>

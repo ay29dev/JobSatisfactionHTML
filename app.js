@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const apiUrl = "https://localhost:7199/api/Form/getLookup"; // Replace with your API URL
+  const apiUrl = "https://localhost:7199/api/Form/getLookup";
   const lookupEndpoints = {
     officeId: "officeLookups",
     classId: "classLookups",
@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     envId: "envLookups",
   };
 
-  // Populate dropdown
   async function populateDropdown(selectId, lookupKey, idField = "id", valueField = "value") {
     const selectElement = document.getElementById(selectId);
 
@@ -19,11 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       const lookupData = data[lookupKey];
 
-      selectElement.innerHTML = '<option value="" disabled selected>Select an option</option>';
+      selectElement.innerHTML = '<option value="" disabled selected>اختيار عنصر</option>';
       lookupData.forEach((item) => {
         const option = document.createElement("option");
         option.value = item[idField];
-        option.textContent = item[valueField] || item.name; // Use 'value' or 'name' depending on field
+        option.textContent = item[valueField] || item.name;
         selectElement.appendChild(option);
       });
     } catch (error) {
@@ -31,14 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Populate all lookups
   Object.entries(lookupEndpoints).forEach(([selectId, lookupKey]) => {
-    const idField = selectId === "officeId" ? "id" : "id"; // Customize ID field if necessary
-    const valueField = selectId === "officeId" ? "name" : "value"; // Customize value field if necessary
+    const idField = selectId === "officeId" ? "id" : "id";
+    const valueField = selectId === "officeId" ? "name" : "value";
     populateDropdown(selectId, lookupKey, idField, valueField);
   });
 
-  // Handle form submission
   const form = document.getElementById("dataForm");
   const resultsTable = document.getElementById("resultsTable").querySelector("tbody");
 
@@ -48,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const formData = new FormData(form);
     const results = [];
 
-    // Collect data from results table
     resultsTable.querySelectorAll("tr").forEach((row) => {
       const form2Id = row.querySelector('input[name="form2Id"]').value;
       const optionResult = row.querySelector('input[name="optionResult"]').value;
@@ -87,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Populate results table
   async function populateResultsTable() {
     try {
       const response = await fetch(apiUrl);
